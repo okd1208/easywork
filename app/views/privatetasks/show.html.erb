@@ -1,0 +1,4 @@
+<%= @task.task %>
+<%= render 'privatetasks/progress', p_task: @task %>
+<p><%= link_to("ユーザー詳細ページ","/users/#{@user.id}") %></p>
+<p><%= link_to("編集","/privatetasks/#{@task.id}/edit") %></p>

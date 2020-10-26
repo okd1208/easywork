@@ -1,8 +1,34 @@
 <div class="text-center">
-    <!--<div class="center jumbotron">-->
+    <% if logged_in? %>
+        <h2>ようこそ <%= current_user.name %> さん</h2>
+        
+        <div class="row">
+            <aside class="col-sm-4">
+                <%= form_with(model: @Ptask, local: true) do|f| %>
+                    <div class="form-group">
+                        <label>タスク内容</label>
+                        <%= f.text_area :task, class: 'form-control', rows: 5 %>
+                        <label>カテゴリー</label>
+                        <!--<%= f.text_field :category, class: 'form-control' %>-->
+                        <input name="category" class="form-control">
+                        <label>期限設定</label>
+                        <%= f.text_field :deadline, class: 'form-control date-picker' %>
+                        
+                        
+                    </div>
+                    <%= f.submit '登録する', class: 'btn btn-primary btn-block' %>
+                <% end %>
+                    <%= link_to '詳細ページ' , "users/#{@user.id}" %>
+            </aside>
+            
+            <div class="col-sm-6">
+                <%= render 'privatetasks/ptasks', p_tasks: @Ptasks %>
+            </div>
+        </div>
+    <% else %>
         <h1 class="mt-5">手軽にタスク管理する</h1>
         <h1 class="mb-5">EasyWork</h1>
-    <!--</div>-->
+    <% end %>
     <p></p>
 
 </div>

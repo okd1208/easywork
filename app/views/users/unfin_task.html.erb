@@ -5,7 +5,7 @@
     
     <div class="col-sm-8">
         <h3><%= @user.name %>さんのタスク一覧</h3>
-        <p>未達成タスク：<%= @unfin_count %>件　タスク達成率：<%= @fin_per %>％</p>
+        <p>未達成タスク：<%= @unfin_count %>件　タスク達成率：<%= @fin_per %>%</p>
         <p class="text-danger">直近の未達成タスクが2件あります</p>
     </div>
 </div>
@@ -32,11 +32,11 @@
     <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a><%= link_to "達成済みタスク","/users/#{@user.id}/fin_task" %></a></li>
-      <li class="nav-item"><a><%= link_to "未達成タスク","/users/#{@user.id}/unfin_task" %></a></li>
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">全てのタスク<span class="badge badge-secondary"><%= @count_p_tasks %></span></a></li>
+      <li class="nav-item"><a class="nav-link 'active'"><%= link_to "未達成タスク","/users/#{@user.id}/unfin_task" %></a></li></a></li>
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link">全てのタスク<span class="badge badge-secondary"><%= @count_p_tasks %></span></a></li>
     </ul>
     
-    <%= render 'privatetasks/ptasks', p_tasks: @p_tasks %>
+    <%= render 'privatetasks/unfin_ptasks', p_tasks: @p_tasks %>
     
   </div>
 </div>

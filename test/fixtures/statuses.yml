@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  done: 2020-10-06 04:44:02
+  privatetask: one
+
+two:
+  done: 2020-10-06 04:44:02
+  privatetask: two

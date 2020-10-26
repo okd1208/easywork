@@ -1,0 +1,11 @@
+                <%= form_with(model: @status, local: true) do|f| %>
+                    <div class="form-group">
+                        <label>タスク内容</label>
+                        <%= f.text_area :done, class: 'form-control', rows: 5 %>
+                        <label>期限設定</label>
+                        <%= f.text_field :done, class: 'form-control date-picker' %>
+                        
+                        
+                    </div>
+                    <%= f.submit '登録する', class: 'btn btn-primary btn-block' %>
+                <% end %>

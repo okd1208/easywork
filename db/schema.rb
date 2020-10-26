@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_113149) do
+ActiveRecord::Schema.define(version: 2020_10_25_145413) do
+
+  create_table "privatetasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "task"
+    t.datetime "deadline"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "progress"
+    t.string "category"
+    t.index ["user_id"], name: "index_privatetasks_on_user_id"
+  end
+
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "done"
+    t.bigint "privatetask_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["privatetask_id"], name: "index_statuses_on_privatetask_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +39,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_113149) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "privatetasks", "users"
+  add_foreign_key "statuses", "privatetasks"
 end

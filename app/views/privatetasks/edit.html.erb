@@ -1,0 +1,12 @@
+<p><%= @task.task %></p>
+<p><%= @task.deadline %></p>
+<p><%= @task.id %></p>
+<p><%= @task.category %></p>
+<p><%= @task.progress %></p>
+<%= form_tag("/privatetasks/#{@task.id}/create_category") do %>
+ <p>タスク</p>
+ <input name="task" value="<%= @task.task %>">
+ <p>カテゴリー</p>
+ <input name="category" value="<%= @task.category %>">
+ <input type="submit" value="送信">
+<% end %>

@@ -1,0 +1,5 @@
+<% if p_task.status == nil %>
+    <%= link_to "完了した", p_task, method: :create, class: 'btn btn-primary btn-sm' %>
+<% else %>
+    <%= link_to "Delete", p_task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+<% end %>
