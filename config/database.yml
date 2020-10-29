@@ -47,8 +47,11 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+  
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: easywork_production
   username: easywork
   password: <%= ENV['EASYWORK_DATABASE_PASSWORD'] %>
