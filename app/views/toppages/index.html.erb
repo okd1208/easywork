@@ -1,6 +1,5 @@
-<div class="text-center">
-    <% if logged_in? %>
-        <h2>ようこそ <%= current_user.name %> さん</h2>
+   <% if logged_in? %>
+        <h2 class="text-center">ようこそ <%= current_user.name %> さん</h2>
         
         <div class="row">
             <aside class="col-sm-4">
@@ -12,7 +11,7 @@
                         <!--<%= f.text_field :category, class: 'form-control' %>-->
                         <input name="category" class="form-control">
                         <label>期限設定</label>
-                        <%= f.text_field :deadline, class: 'form-control date-picker' %>
+                        <%= f.text_field :deadline, class: 'form-control date-picker', :placeholder => "2020-12-31" %>
                         
                         
                     </div>
@@ -22,13 +21,11 @@
             </aside>
             
             <div class="col-sm-6">
-                <%= render 'privatetasks/ptasks', p_tasks: @Ptasks %>
+                <%= render 'layouts/tasks' %>
             </div>
         </div>
     <% else %>
         <h1 class="mt-5">手軽にタスク管理する</h1>
         <h1 class="mb-5">EasyWork</h1>
     <% end %>
-    <p></p>
 
-</div>

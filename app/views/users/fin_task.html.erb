@@ -1,12 +1,16 @@
-<div class="row">
-    <aside class="col-sm-3">
-    <img class="rounded img-fluid float-right" src="<%= gravatar_url(@user, { size: 100}) %>" alt="">
+<div class="row text-center">
+    <aside class="col-sm-3 mx-auto d-block">
+    <img class="rounded img-fluid float-md-right" src="<%= gravatar_url(@user, { size: 100}) %>" alt="">
     </aside>
     
-    <div class="col-sm-8">
+    <div class="col-sm-8 text-center text-md-left">
         <h3><%= @user.name %>さんのタスク一覧</h3>
         <p>未達成タスク：<%= @unfin_count %>件　タスク達成率：<%= @fin_per %>％</p>
-        <p class="text-danger">直近の未達成タスクが2件あります</p>
+        <% if @soon == nil || @soon.count == 0%>
+            <p>直近の未達成タスクがはありません。</p>
+        <% else %>
+            <p class="text-danger">直近の未達成タスクが<%= @soon.count %>件あります</p>
+        <% end %>
     </div>
 </div>
 
@@ -14,7 +18,7 @@
     <aside class="col-sm-4 text-center">
         <h3>カテゴリー別</h3>
         <ul class="list-group">
-            <% @p_tasks.each do |p_task| %>
+            <% @tasks.each do |p_task| %>
                 <% if p_task.category== nil || p_task.category=="" %>
                   <% @none_categories = p_task %>
                 <% else %>
@@ -27,16 +31,16 @@
             <% end %>
             <li class="list-group-item"><%= link_to "カテゴリーなし","/privatetasks/#{@user.id}/none_categories", class: "text-dark" %></li>
         </ul>
-        <%= link_to "タスクを全て消去", "/privatetasks/#{@user.id}/all_destroy", method: :post, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        <%= link_to "タスクを全て消去", "/privatetasks/#{@user.id}/all_destroy", method: :post, data: { confirm: "全てのタスクを消去しますか?" }, class: 'btn btn-danger btn-sm mt-3 mb-5' %>
     </aside>
     <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a class="nav-link 'active'"><%= link_to "達成済みタスク","/users/#{@user.id}/fin_task" %></a></li>
-      <li class="nav-item"><a><%= link_to "未達成タスク","/users/#{@user.id}/unfin_task" %></a></li></a></li>
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link">全てのタスク<span class="badge badge-secondary"><%= @count_p_tasks %></span></a></li>
+      <li class="nav-item"><a href="/users/<%= @user.id %>/fin_task"class="nav-link active">達成済タスク  <span class="badge badge-secondary"><%= @fin_count %></span></a></li>
+      <li class="nav-item"><a href="/users/<%= @user.id %>/unfin_task"class="nav-link">未達成タスク  <span class="badge badge-secondary"><%= @unfin_count %></span></a></li>
     </ul>
     
-    <%= render 'privatetasks/fin_ptasks', p_tasks: @p_tasks %>
+    <%= render 'layouts/tasks' %>
     
   </div>
 </div>

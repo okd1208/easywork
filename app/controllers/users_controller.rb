@@ -11,9 +11,13 @@ class UsersController < ApplicationController
   end
   
   def fin_task
+    @tasks = @p_tasks
+    @p_tasks = @p_tasks.where("progress != '2019-12-31 15:00:00'").order(id: "DESC")
   end
   
   def unfin_task
+    @tasks = @p_tasks
+    @p_tasks = @p_tasks.where("progress = '2019-12-31 15:00:00'").order(id: "DESC")
   end
 
   def new
@@ -38,13 +42,21 @@ class UsersController < ApplicationController
   
   def user_shows
       @user = User.find(params[:id])
-      @p_tasks = @user.privatetasks.all
+      @p_tasks = @user.privatetasks.all.order(id: "DESC")
       counts(@user)
     if @current_user.privatetasks.count != 0
-      @unfin_count = Privatetask.where(progress: "2020.01.01 00:00:00",user_id:@user.id).count
+      @unfin_count = Privatetask.where(progress: "2019-12-31 15:00:00",user_id:@user.id).count
       @fin_count = @p_tasks.count - @unfin_count
       @fin_per =  @fin_count * 100 / @p_tasks.count
       @categories =[]
+      @nowtime = DateTime.now
+       if @nowtime.day == 31
+         @d = 1
+       else
+         @d = @nowtime.day
+       end
+      @soon = @p_tasks.where(deadline: "#{@nowtime.year}-#{@nowtime.month}-#{@d} 15:00:00", progress: "2019-12-31 15:00:00")
+      
     end
   end
 end

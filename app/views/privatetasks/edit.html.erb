@@ -1,12 +1,29 @@
-<p><%= @task.task %></p>
-<p><%= @task.deadline %></p>
-<p><%= @task.id %></p>
-<p><%= @task.category %></p>
-<p><%= @task.progress %></p>
-<%= form_tag("/privatetasks/#{@task.id}/create_category") do %>
- <p>タスク</p>
- <input name="task" value="<%= @task.task %>">
- <p>カテゴリー</p>
- <input name="category" value="<%= @task.category %>">
- <input type="submit" value="送信">
-<% end %>
+<div class="text-center border rounded-pill">
+  <% deadline_time = @task.deadline %>
+  <% create_time = @task.created_at %>
+  <div class="media-body">
+      <p><span class="text-muted"> 設定日：<%= "#{create_time.year}/#{create_time.month}/#{create_time.day}" %></span></p>
+  </div>
+  <div>
+      <%= form_tag("/privatetasks/#{@task.id}/create_category") do %>
+       <p><label>タスク内容</label>
+       <input name="task" value="<%= @task.task %>"></p>
+       <p><label>カテゴリー</label>
+       <input name="category" value="<%= @task.category %>"></p>
+       <p><label>期限設定</label>
+       <input name="deadline_year" value="<%= deadline_time.year %>" class="text-center w-auto">年
+       <input name="deadline_month" value="<%= deadline_time.month %>" class="text-center">月
+       <input name="deadline_day" value="<%= deadline_time.day %>" class="text-center">日</p>
+       <p><input type="submit" value="送信" class='btn btn-primary btn-block w-25 ml-auto mr-auto'></p>
+       
+      <% end %>
+  </div>
+  <div>
+    <% if current_user == @task.user %>
+      <%= render 'privatetasks/progress', p_task: @task %>
+      <%= link_to "削除", @task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm' %>
+    <% end %>
+    <%  @user = User.find(@task.user_id) %>
+      <p><%= link_to("ユーザー詳細ページ","/users/#{@user.id}") %></p>
+  </div>
+</div> 
