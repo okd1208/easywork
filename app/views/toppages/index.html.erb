@@ -25,7 +25,11 @@
             </div>
         </div>
     <% else %>
+    <div class="text-center">
         <h1 class="mt-5">手軽にタスク管理する</h1>
         <h1 class="mb-5">EasyWork</h1>
+        <button type="button" class="btn btn-success w-25"><%= link_to '新規登録', signup_path, :style => "color: white;"  %></button>
+        <button type="button" class="btn btn btn-info w-25"><%= link_to  'ログイン', login_path, :style => "color: white;"  %></button>
+    </div>
     <% end %>
 
