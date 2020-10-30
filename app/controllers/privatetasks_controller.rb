@@ -5,9 +5,9 @@ class PrivatetasksController < ApplicationController
   def create
     @p_task = current_user.privatetasks.build(ptask_params)
     @p_task.category = params[:category]
+    @p_task.progress = "2020-01-01 00:00:00"
       if @p_task.save
         flash[:success] = 'タスクを設定しました!'
-        @p_task.progress = "2020-01-01 00:00:00"
         redirect_to root_url
       else
         # @Ptasks = current_user.privatetasks.order(id: :desc).page(params[:page])

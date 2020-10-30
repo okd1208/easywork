@@ -33,6 +33,7 @@
             <li class="list-group-item"><%= link_to "カテゴリーなし","/privatetasks/#{@user.id}/none_categories", class: "text-dark" %></li>
         </ul>
         <%= link_to "タスクを全て消去", "/privatetasks/#{@user.id}/all_destroy", method: :post, data: { confirm: "全てのタスクを消去しますか?" }, class: 'btn btn-danger btn-sm mt-3 mb-5' %>
+        <%= link_to 'タスクを新規作成', "/",class: 'btn btn-info btn-sm mt-3 mb-5' %>
     </aside>
     <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
