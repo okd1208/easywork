@@ -1,24 +1,9 @@
-# README
+# タスク管理アプリ「Easy Work」
+タスク内容、期日、カテゴリーを設定することで、簡単にタスクを管理できるwebアプリケーションです。
+タブで完了済みタスクのみ表示させたり、未完了のものだけ表示させたり、カテゴリー別でタスクを閲覧することなどが可能です。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# デプロイ
+heroku(https://easywork-200.herokuapp.com/)
 
 * Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2.5.3

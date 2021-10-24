@@ -7,7 +7,7 @@
         <h3><%= @user.name %>さんのタスク一覧</h3>
         <p>未達成タスク：<%= @unfin_count %>件　タスク達成率：<%= @fin_per %>％</p>
         <% if @soon == nil || @soon.count == 0%>
-            <p>直近の未達成タスクがはありません。</p>
+            <p>直近の未達成タスクはありません。</p>
         <% else %>
             <p class="text-danger">直近の未達成タスクが<%= @soon.count %>件あります</p>
         <% end %>

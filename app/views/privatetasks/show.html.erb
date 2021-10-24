@@ -14,6 +14,6 @@
       <%= link_to "削除", @task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm' %>
       <p><%= link_to("編集","/privatetasks/#{@task.id}/edit") %></p>
     <% end %>
-      <p><%= link_to("ユーザー詳細ページ","/users/#{@user.id}") %></p>
+      <p><%= link_to("タスク一覧ページ","/users/#{@user.id}") %></p>
   </div>
 </div> 
